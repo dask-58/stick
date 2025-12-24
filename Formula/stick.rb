@@ -1,7 +1,7 @@
 class Stick < Formula
   desc "Minimal static site generator in Rust"
   homepage "https://github.com/dask-58/stick"
-  version "0.1.1"
+  version "0.1.2"
   license "MIT"
 
   on_macos do
