@@ -4,10 +4,10 @@ Minimal static site generator in Rust. Zero dependencies, single binary.
 
 ## Install
 
-### Homebrew
+### Homebrew (macOS)
 
 ```bash
-brew tap dask-58/stick
+brew tap dask-58/stick https://github.com/dask-58/stick
 brew install stick
 ```
 
@@ -57,14 +57,6 @@ This is **bold** and *italic* text.
 - Item one
 - Item two
 
-## Code
-
-```rust
-fn main() {
-    println!("Hello!");
-}
-```
-
 | Column A | Column B |
 |----------|----------|
 | Data 1   | Data 2   |
@@ -87,6 +79,36 @@ Run `stick` and open `dist/my-page.html`.
 | `---` | Horizontal rule |
 | ` ``` ` | Code block |
 | `\| a \| b \|` | Table |
+
+## Troubleshooting
+
+### Update to latest version
+
+```bash
+brew untap dask-58/stick
+brew tap dask-58/stick https://github.com/dask-58/stick
+brew install stick
+```
+
+### Tap not found
+
+Always include the full URL:
+```bash
+brew tap dask-58/stick https://github.com/dask-58/stick
+```
+
+### Reinstall
+
+```bash
+brew uninstall stick
+brew install stick
+```
+
+### Check version
+
+```bash
+stick --version
+```
 
 ## License
 

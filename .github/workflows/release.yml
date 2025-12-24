@@ -16,9 +16,7 @@ jobs:
       matrix:
         include:
           - target: aarch64-apple-darwin
-            os: macos-15
-          # - target: x86_64-apple-darwin
-          #   os: macos-15
+            os: macos-14
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
 
@@ -37,8 +35,13 @@ jobs:
           tar -czvf ../../../stick-${{ matrix.target }}.tar.gz stick
 
       - name: Generate SHA256
+        shell: bash
         run: |
-          shasum -a 256 stick-${{ matrix.target }}.tar.gz > stick-${{ matrix.target }}.sha256
+          if command -v shasum &> /dev/null; then
+            shasum -a 256 stick-${{ matrix.target }}.tar.gz | cut -d' ' -f1 > stick-${{ matrix.target }}.sha256
+          else
+            sha256sum stick-${{ matrix.target }}.tar.gz | cut -d' ' -f1 > stick-${{ matrix.target }}.sha256
+          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -59,7 +62,7 @@ jobs:
           merge-multiple: true
 
       - name: List files
-        run: ls -la
+        run: ls -la && cat *.sha256
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
